@@ -1,12 +1,6 @@
 # news-buzz
 Assignment project from Persist Ventures
 
-# Dependencies
-axios
-react-router-dom
-redux
-redux-toolkit
-react-redux
 
 # Directory Structure
 
