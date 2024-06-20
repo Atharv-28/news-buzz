@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/header";
 import Navbar from "./components/navbar";
 import HomePage from "./pages/HomePage";
+import ArticleFetch from "./features/ArtcileFetch";
 
 function App() {
   return (
@@ -10,9 +11,8 @@ function App() {
       <Header />
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route element={<HomePage />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/:category" element={<ArticleFetch />} />
       </Routes>
     </BrowserRouter>
   );

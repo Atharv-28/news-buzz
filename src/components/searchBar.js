@@ -1,13 +1,17 @@
-import React from 'react'
-import "../styles/header.css"
+import React from 'react';
 
-const searchBar = () => {
+const SearchBar = ({ searchTerm, handleSearch }) => {
   return (
     <div>
-        <input className='searchBar' placeholder='Search🔍...' type='search' />
+      <input
+        className='searchBar'
+        placeholder='Search🔍...'
+        type='search'
+        value={searchTerm}
+        onChange={handleSearch}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default searchBar;
-
+export default SearchBar;
