@@ -1,13 +1,18 @@
 .header{
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: #4363d1;
     color: white;
-    padding-bottom: 4vh;
-    height: 15vh;
+    height: 10vh;
+    padding-bottom: 1vh;
     gap: 30px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+}
+
+.header h1{
+    font-family:Cambria;
 }
 
 .searchBar{
@@ -17,22 +22,3 @@
     padding: 10px;
     border: none;
 }
-
-@media screen and (min-width: 501px) {
-    .head{
-        margin-left: 5vw;
-        margin-right: 25vw;
-    }
-  }
-
-@media screen and (max-width: 500px) {
-    .header{
-        display: flex;
-        flex-direction: column;
-        height: max-content;
-        gap: 0px;
-    }
-    .searchBar{
-        width: 70vw;
-    }
-  }
