@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const MyapiKey = "cbccc7c17dcb4be9b57e6a4976ea8259";
+const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
 export const fetchNews = createAsyncThunk(
   'news/fetchNews',
   async ({ category, page }) => {
+    // console.log(apiKey);
     const response = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=in&category=${category}&page=${page}&apiKey=${MyapiKey}`
+      `https://newsapi.org/v2/top-headlines?country=in&category=${category}&page=${page}&apiKey=${apiKey}`
     );
     return { articles: response.data.articles, totalResults: response.data.totalResults };
   }
