@@ -1,5 +1,5 @@
 .fetchPage{
-    height: 78vh;
+    height: 80vh;
     display: flex;
     width: 98vw;
     flex-direction: column;
@@ -45,7 +45,7 @@
 
 @media screen and (max-width: 500px) {
     .fetchPage{
-        height: 68vh;
+        height: 72vh;
     }
     .list-container{
         width: 100%;

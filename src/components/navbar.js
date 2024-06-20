@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className="navbar">
       <nav className="navigation">
         <Link className="navbut" to="/">
-          Home Page
+          HomePage
         </Link>
         <Link className="navbut" to="/Technology">
           Technology
@@ -25,7 +25,7 @@ const Navbar = () => {
           Science
         </Link>
         <Link className="navbut" to="/saved">
-          Saved📁
+          Saved
         </Link>
       </nav>
 
