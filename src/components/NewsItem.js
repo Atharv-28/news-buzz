@@ -13,18 +13,18 @@ const NewsItem = ({ article }) => {
   };
 
   const handleReadMore = () => {
-    navigate(`/article/${article.title}`, { state: { article } });
+    navigate(`/article/${encodeURIComponent(article.title)}`, { state: { article } });
   };
 
   return (
     <li className="news-item">
-        <div className="ImageContainer">
-      <img
-        className="articleImg"
-        src={article.urlToImage || 'https://cdn-icons-png.flaticon.com/128/14534/14534501.png'}
-        alt="Image Not Found"
-      />
-        </div>
+      <div className="ImageContainer">
+        <img
+          className="articleImg"
+          src={article.urlToImage || 'https://cdn-icons-png.flaticon.com/128/14534/14534501.png'}
+          alt="Image Not Found"
+        />
+      </div>
       <div className="article-text">
         <h3>{article.title}</h3>
         <p>{article.description}</p>

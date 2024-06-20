@@ -26,7 +26,11 @@ const newsSlice = createSlice({
     saveArticle: (state, action) => {
       state.savedArticles.push(action.payload);
       localStorage.setItem('savedArticles', JSON.stringify(state.savedArticles));
-    }
+    },
+    loadSavedArticles: (state) => {
+      state.articles = state.savedArticles;
+      state.totalResults = state.savedArticles.length;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -46,5 +50,5 @@ const newsSlice = createSlice({
   },
 });
 
-export const { saveArticle } = newsSlice.actions;
+export const { saveArticle, loadSavedArticles } = newsSlice.actions;
 export default newsSlice.reducer;
