@@ -1,0 +1,18 @@
+.pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageBut{
+    border: none;
+    cursor: pointer;
+}
+
+.prevImg{
+    height: 5vh;
+}
+.nextImg{
+    height: 6vh;
+}

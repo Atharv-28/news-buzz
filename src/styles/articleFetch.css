@@ -1,0 +1,14 @@
+.fetchPage{
+    border: 2px solid red;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.news-list{
+    height: 65vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}

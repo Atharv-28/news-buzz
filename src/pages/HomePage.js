@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import ArticleFetch from '../features/ArtcileFetch';
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <div>
+      <ArticleFetch defaultCategory="general" />
+    </div>
+  );
+};
 
 export default HomePage;

@@ -1,0 +1,10 @@
+.news-item{
+    list-style: none;
+    display: flex;
+    border: 2px solid yellow;
+    align-items: center;
+}
+
+.articleImg{
+    height: 20vh;
+}
