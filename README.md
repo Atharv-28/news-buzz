@@ -10,6 +10,12 @@ src/features for js function to handle and process data
 
 src/pages  for pages of react app(here components will be imported)
 
+# Dependencies
+axios
+react-router-dom
+redux
+redux-toolkit
+react-redux
 
 # API Key from newsapi.org
  API key is: feb043f853ee48c383b367265745bca8
