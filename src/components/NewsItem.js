@@ -18,17 +18,19 @@ const NewsItem = ({ article }) => {
 
   return (
     <li className="news-item">
+        <div className="ImageContainer">
       <img
         className="articleImg"
-        src={article.urlToImage}
-        alt="https://cdn-icons-png.flaticon.com/128/13932/13932148.png"
+        src={article.urlToImage || 'https://cdn-icons-png.flaticon.com/128/14534/14534501.png'}
+        alt="Image Not Found"
       />
-      <div>
+        </div>
+      <div className="article-text">
         <h3>{article.title}</h3>
         <p>{article.description}</p>
-        <button onClick={handleReadMore}>Read More</button>
+        <button className="readBut" onClick={handleReadMore}>Read More 🗞️</button>
       </div>
-      <button onClick={handleSave}>Save</button>
+      <button className="saveBut" onClick={handleSave}>Save</button>
     </li>
   );
 };

@@ -21,9 +21,6 @@ const Navbar = () => {
         <Link className="navbut" to="/Sports">
           Sports
         </Link>
-        <Link className="navbut" to="/Politics">
-          Politics
-        </Link>
         <Link className="navbut" to="/Science">
           Science
         </Link>
