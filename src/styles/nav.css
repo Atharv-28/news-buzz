@@ -17,7 +17,8 @@
     gap: 25px;
     overflow-x:scroll;
     scrollbar-width: none;
-    height:7vh;
+    height:max-content;
+    padding: 10px 5px 10px 5px;
 }
 
 .navbut{
@@ -37,4 +38,10 @@
 .navbut:active{
     color: whitesmoke;
     background-color: #4363d1;
+}
+
+@media screen and (max-width: 500px) {
+    .navigation{
+        justify-content: flex-start;
+    }
 }
