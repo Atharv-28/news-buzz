@@ -28,16 +28,16 @@ const ArticleFetch = ({ defaultCategory }) => {
     article.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const totalPages = Math.ceil(totalResults / 12);
+  const totalPages = Math.ceil(totalResults / 10);
 
   return (
     <div className="fetchPage">
       <div className="fetchContent">
         <SearchBar searchTerm={searchTerm} handleSearch={handleSearch} />
         {loading ? (
-          <p>Loading...</p>
+          <p className="Msg">Loading...</p>
         ) : error ? (
-          <p>{error}</p>
+          <p className="Msg">{error}! Please check your Internet connection</p>
         ) : (
           <div className="list-container">
             <ul className="news-list">

@@ -10,6 +10,8 @@ src/features for js function to handle and process data
 
 src/pages  for pages of react app(here components will be imported)
 
+src/styles for all css files except app and index
+
 # Dependencies
 axios
 react-router-dom
@@ -23,3 +25,9 @@ react-redux
 
  # Base URL
  https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=feb043f853ee48c383b367265745bca8
+
+ # Icons
+ Icons are used from : https://www.flaticon.com/   website
+
+ # Box Shados
+ Box Shadows are used from : https://getcssscan.com/css-box-shadow-examples
