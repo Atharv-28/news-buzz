@@ -20,8 +20,10 @@ const ArticleFetch = ({ defaultCategory }) => {
   useEffect(() => {
     if (location.pathname === "/saved") {
       dispatch(loadSavedArticles());
+      console.log("Loading saved articles");
     } else {
       dispatch(fetchNews({ category: category || defaultCategory, page }));
+      console.log(`Fetching news for category: ${category || defaultCategory}, page: ${page}`);
     }
   }, [category, defaultCategory, page, location.pathname, dispatch]);
 
@@ -29,19 +31,21 @@ const ArticleFetch = ({ defaultCategory }) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredNews = (category === "saved" ? savedArticles : articles).filter((article) =>
+  const filteredNews = (location.pathname === "/saved" ? savedArticles : articles).filter((article) =>
     article.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const totalPages = Math.ceil((category === "saved" ? filteredNews.length : totalResults) / 10);
+  console.log("Filtered news:", filteredNews);
+
+  const totalPages = Math.ceil((location.pathname === "/saved" ? filteredNews.length : totalResults) / 10);
 
   return (
     <div className="fetchPage">
       <div className="fetchContent">
         <SearchBar searchTerm={searchTerm} handleSearch={handleSearch} />
-        {loading && category !== "saved" ? (
+        {loading && location.pathname !== "/saved" ? (
           <p className="Msg">Loading...</p>
-        ) : error && category !== "saved" ? (
+        ) : error && location.pathname !== "/saved" ? (
           <p className="Msg">{error}</p>
         ) : (
           <div className="list-container">
