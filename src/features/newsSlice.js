@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiKey = "6240a1cac580df9f7b8e90a3df52dcb9"; //Storing Api Key, can be also done by inserting directly in .get() or .fetch()
+const apiKey = "077bb8175639502038599c91cb39f3ec"; //Storing Api Key, can be also done by inserting directly in .get() or .fetch()
 
 
 //creating Async Thunk for error Handling
