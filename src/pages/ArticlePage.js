@@ -18,7 +18,7 @@ const ArticlePage = () => {
         <h2 className="art-Title">{article.title}</h2>
         <img
           src={
-            article.urlToImage ||
+            article.image ||
             "https://cdn-icons-png.flaticon.com/128/14534/14534501.png"
           } 
           className="art-Img"

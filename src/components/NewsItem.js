@@ -21,7 +21,7 @@ const NewsItem = ({ article }) => {
       <div className="ImageContainer">
         <img
           className="articleImg"
-          src={article.urlToImage || 'https://cdn-icons-png.flaticon.com/128/14534/14534501.png'}
+          src={article.image || 'https://cdn-icons-png.flaticon.com/128/14534/14534501.png'}
           alt="Image Not Found"
         />
       </div>
