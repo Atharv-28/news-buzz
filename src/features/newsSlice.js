@@ -8,7 +8,7 @@ export const fetchNews = createAsyncThunk(
   async ({ category, page }, { rejectWithValue }) => {
     try {
       const lowerCaseCategory = category.toLowerCase();
-      const url = `https://gnews.io/api/v4/top-headlines?category=${lowerCaseCategory}&lang=en&country=in&apikey=&page=${page}&max=10`;
+      const url = `https://gnews.io/api/v4/top-headlines?category=${lowerCaseCategory}&lang=en&country=in&apikey=${apiKey}&page=${page}&max=10`;
       console.log("API URL:", url);
 
       const response = await axios.get(url);
