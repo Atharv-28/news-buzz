@@ -7,8 +7,8 @@ const SearchBar = ({ searchTerm, handleSearch }) => {
         className='searchBar'
         placeholder='Search🔍...'
         type='search'
-        value={searchTerm}
-        onChange={handleSearch}
+        value={searchTerm}//input of search Bar
+        onChange={handleSearch}//calling function to filter the search results.. Function on ArticleFetch.js
       />
     </div>
   );

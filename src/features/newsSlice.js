@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiKey = "6240a1cac580df9f7b8e90a3df52dcb9";
+const apiKey = "6240a1cac580df9f7b8e90a3df52dcb9"; //Storing Api Key, can be also done by inserting directly in .get() or .fetch()
 
+
+//creating Async Thunk for error Handling
 export const fetchNews = createAsyncThunk(
   'news/fetchNews',
   async ({ category, page }, { rejectWithValue }) => {
     try {
       const lowerCaseCategory = category.toLowerCase();
       const url = `https://gnews.io/api/v4/top-headlines?category=${lowerCaseCategory}&lang=en&country=in&apikey=${apiKey}&page=${page}&max=10`;
-      console.log("API URL:", url);
-
       const response = await axios.get(url);
       return { articles: response.data.articles, totalResults: response.data.totalArticles };
     } catch (error) {
@@ -19,6 +19,8 @@ export const fetchNews = createAsyncThunk(
   }
 );
 
+
+// creating slice to manage perticular states over whole react-app
 const newsSlice = createSlice({
   name: 'news',
   initialState: {
@@ -29,6 +31,7 @@ const newsSlice = createSlice({
     savedArticles: JSON.parse(localStorage.getItem('savedArticles')) || [],
   },
   reducers: {
+    // reducers are used to handle save article feature (saving,loading and deleting)
     saveArticle: (state, action) => {
       const isAlreadySaved = state.savedArticles.some(article => article.title === action.payload.title);
       if (!isAlreadySaved) {
@@ -45,6 +48,7 @@ const newsSlice = createSlice({
       localStorage.setItem('savedArticles', JSON.stringify(state.savedArticles));
     }
   },
+  // addCases to handle state of fetching 
   extraReducers: (builder) => {
     builder
       .addCase(fetchNews.pending, (state) => {

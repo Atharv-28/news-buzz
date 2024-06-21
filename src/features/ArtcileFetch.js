@@ -8,32 +8,35 @@ import { fetchNews, loadSavedArticles } from "./newsSlice";
 import "../styles/articleFetch.css";
 
 const ArticleFetch = ({ defaultCategory }) => {
-  const { category } = useParams();
-  const location = useLocation();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [page, setPage] = useState(1);
-  const dispatch = useDispatch();
+  //Initiating States
+  const { category } = useParams();  //for category of news
+  const location = useLocation();  // for page location
+  const [searchTerm, setSearchTerm] = useState(""); // for search mechanism
+  const [page, setPage] = useState(1); // for pagination
+  const dispatch = useDispatch();  // redux method to handle states
   const { articles, loading, error, totalResults, savedArticles } = useSelector(
     (state) => state.news
   );
 
   useEffect(() => {
     if (location.pathname === "/saved") {
-      dispatch(loadSavedArticles());
+      dispatch(loadSavedArticles());  // to load saved articles when on saved page
     } else {
-      dispatch(fetchNews({ category: category || defaultCategory, page }));
+      dispatch(fetchNews({ category: category || defaultCategory, page }));  // To load news according to category & page no {Note: Because of Gnews, we will only get 10 articles that's why we will have 1 page of news & pagination is useless}
     }
-  }, [category, defaultCategory, page, location.pathname, dispatch]);
+  }, [category, defaultCategory, page, location.pathname, dispatch]); // Parameters/props for useEffect
 
+  // Handling search typing event
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(event.target.value); 
   };
 
+  // Handling results of above search event
   const filteredNews = (location.pathname === "/saved" ? savedArticles : articles).filter((article) =>
     article.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
+  // To specify no. of articles in a single page. {Read Note on line no. 25}
   const totalPages = Math.ceil((location.pathname === "/saved" ? filteredNews.length : totalResults) / 10);
 
   return (

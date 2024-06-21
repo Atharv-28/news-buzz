@@ -5,17 +5,23 @@ import { saveArticle, deleteSavedArticle } from "../features/newsSlice";
 import "../styles/newsItem.css";
 
 const NewsItem = ({ article, isSaved }) => {
+  //initialte imports 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
+  //Calling saveArticle() to save respective article, function code in newsSlice.js
   const handleSave = () => {
     dispatch(saveArticle(article));
   };
 
+  //Calling deleteSaveArticle() to delete saved article, function code in newsSlice.js
   const handleDelete = () => {
     dispatch(deleteSavedArticle(article));
   };
 
+
+  //navigating user to articlePage.js for detailed info view
   const handleReadMore = () => {
     navigate(`/article/${encodeURIComponent(article.title)}`, { state: { article } });
   };

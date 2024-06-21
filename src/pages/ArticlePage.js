@@ -6,6 +6,7 @@ const ArticlePage = () => {
   const location = useLocation();
   const { article } = location.state || {};
 
+  //If articles are not fetched
   if (!article) {
     return <p>Article not found</p>;
   }

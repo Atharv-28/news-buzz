@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <nav className="navigation">
-        <Link className="navbut" to="/">
+        <Link className="navbut" to="/">  //links are used in router to navigate action
           HomePage
         </Link>
         <Link className="navbut" to="/Technology">
