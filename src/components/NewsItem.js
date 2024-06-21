@@ -1,15 +1,19 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { saveArticle } from "../features/newsSlice";
+import { saveArticle, deleteSavedArticle } from "../features/newsSlice";
 import "../styles/newsItem.css";
 
-const NewsItem = ({ article }) => {
+const NewsItem = ({ article, isSaved }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSave = () => {
     dispatch(saveArticle(article));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteSavedArticle(article));
   };
 
   const handleReadMore = () => {
@@ -30,7 +34,11 @@ const NewsItem = ({ article }) => {
         <p>{article.description}</p>
         <button className="readBut" onClick={handleReadMore}>Read More 🗞️</button>
       </div>
-      <button className="saveBut" onClick={handleSave}>Save</button>
+      {isSaved ? (
+        <button className="deleteBut" onClick={handleDelete}>Delete</button>
+      ) : (
+        <button className="saveBut" onClick={handleSave}>Save</button>
+      )}
     </li>
   );
 };

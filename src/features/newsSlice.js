@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const apiKey = "6240a1cac580df9f7b8e90a3df52dcb9";
 
-// Define the fetchNews async thunk
 export const fetchNews = createAsyncThunk(
   'news/fetchNews',
   async ({ category, page }, { rejectWithValue }) => {
@@ -35,14 +34,16 @@ const newsSlice = createSlice({
       if (!isAlreadySaved) {
         state.savedArticles.push(action.payload);
         localStorage.setItem('savedArticles', JSON.stringify(state.savedArticles));
-        console.log("Article saved:", action.payload);
       }
     },
     loadSavedArticles: (state) => {
       state.articles = state.savedArticles;
       state.totalResults = state.savedArticles.length;
-      console.log("Loaded saved articles:", state.savedArticles);
     },
+    deleteSavedArticle: (state, action) => {
+      state.savedArticles = state.savedArticles.filter(article => article.title !== action.payload.title);
+      localStorage.setItem('savedArticles', JSON.stringify(state.savedArticles));
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -54,16 +55,13 @@ const newsSlice = createSlice({
         state.loading = false;
         state.articles = action.payload.articles;
         state.totalResults = action.payload.totalResults;
-        console.log("Fetched articles:", action.payload.articles);
       })
       .addCase(fetchNews.rejected, (state, action) => {
         state.loading = false;
         state.error = `Failed to fetch news: ${action.payload || action.error.message}`;
-        console.error("Fetch news error:", state.error);
       });
   },
 });
 
-// Export the actions and reducer
-export const { saveArticle, loadSavedArticles } = newsSlice.actions;
+export const { saveArticle, loadSavedArticles, deleteSavedArticle } = newsSlice.actions;
 export default newsSlice.reducer;

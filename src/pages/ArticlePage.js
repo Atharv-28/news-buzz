@@ -1,4 +1,3 @@
-// Separate Article Page after clicking on read more.
 import React from "react";
 import { useLocation } from "react-router-dom";
 import "../styles/articlePage.css";

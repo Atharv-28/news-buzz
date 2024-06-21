@@ -34,6 +34,22 @@
     height: 20vh;
 }
 
+
+.deleteBut {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  
+  .deleteBut:hover {
+    background-color: darkred;
+  }
+
 @media screen and (max-width: 500px) {
     .news-item{
         margin-left: -12vw;

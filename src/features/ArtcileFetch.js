@@ -20,10 +20,8 @@ const ArticleFetch = ({ defaultCategory }) => {
   useEffect(() => {
     if (location.pathname === "/saved") {
       dispatch(loadSavedArticles());
-      console.log("Loading saved articles");
     } else {
       dispatch(fetchNews({ category: category || defaultCategory, page }));
-      console.log(`Fetching news for category: ${category || defaultCategory}, page: ${page}`);
     }
   }, [category, defaultCategory, page, location.pathname, dispatch]);
 
@@ -35,7 +33,6 @@ const ArticleFetch = ({ defaultCategory }) => {
     article.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log("Filtered news:", filteredNews);
 
   const totalPages = Math.ceil((location.pathname === "/saved" ? filteredNews.length : totalResults) / 10);
 
@@ -51,7 +48,7 @@ const ArticleFetch = ({ defaultCategory }) => {
           <div className="list-container">
             <ul className="news-list">
               {filteredNews.map((article, index) => (
-                <NewsItem key={index} article={article} />
+                <NewsItem key={index} article={article} isSaved={location.pathname === "/saved"} />
               ))}
             </ul>
             {location.pathname !== "/saved" && (
