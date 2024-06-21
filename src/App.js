@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/:category" element={<ArticleFetch />} />
         <Route path="/article/:title" element={<ArticlePage />} /> 
-        <Route path="/saved" element={<ArticleFetch />} />
+        <Route path="/Saved" element={<ArticleFetch />} />
       </Routes>
     </BrowserRouter>
   );

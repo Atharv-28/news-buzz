@@ -24,7 +24,7 @@ const Navbar = () => {
         <Link className="navbut" to="/Science">
           Science
         </Link>
-        <Link className="navbut" to="/saved">
+        <Link className="navbut" to="/Saved">
           Saved
         </Link>
       </nav>

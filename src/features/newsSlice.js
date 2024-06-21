@@ -8,9 +8,9 @@ export const fetchNews = createAsyncThunk(
   async ({ category, page }, { rejectWithValue }) => {
     try {
       const lowerCaseCategory = category.toLowerCase();
-      const url = `https://gnews.io/api/v4/top-headlines?category=${lowerCaseCategory}&lang=en&country=in&apikey=&page=${page}&max=30`;
+      const url = `https://gnews.io/api/v4/top-headlines?category=${lowerCaseCategory}&lang=en&country=in&apikey=&page=${page}&max=10`;
       console.log("API URL:", url);
-      console.log("API : "+`https://gnews.io/api/v4/top-headlines?category=${category}&lang=en&country=in&apikey=&page=${page}&max=30`);
+
       const response = await axios.get(url);
       return { articles: response.data.articles, totalResults: response.data.totalArticles };
     } catch (error) {
@@ -33,6 +33,10 @@ const newsSlice = createSlice({
       state.savedArticles.push(action.payload);
       localStorage.setItem('savedArticles', JSON.stringify(state.savedArticles));
     },
+    loadSavedArticles: (state) => {
+      state.articles = state.savedArticles;
+      state.totalResults = state.savedArticles.length;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -52,5 +56,5 @@ const newsSlice = createSlice({
   },
 });
 
-export const { saveArticle } = newsSlice.actions;
+export const { saveArticle, loadSavedArticles } = newsSlice.actions;
 export default newsSlice.reducer;
