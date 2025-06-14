@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveArticle, deleteSavedArticle } from "../features/newsSlice";
 import "../styles/newsItem.css";
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const NewsItem = ({ article, isSaved }) => {
   //initialte imports
@@ -33,15 +36,15 @@ const NewsItem = ({ article, isSaved }) => {
         <p>{article.description}</p>
         <div className="article-buttons">
           <button className="readBut" onClick={handleReadMore}>
-            Read More 🗞️
+            <OpenInNewIcon fontSize="small" className="open-icon" />
           </button>
           {isSaved ? (
             <button className="deleteBut" onClick={handleDelete}>
-              Delete
+              <DeleteIcon fontSize="small" className="delete-icon" />
             </button>
           ) : (
             <button className="saveBut" onClick={handleSave}>
-              Save
+              <BookmarkIcon fontSize="small" className="bookmark-icon" />
             </button>
           )}
         </div>
