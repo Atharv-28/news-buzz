@@ -24,12 +24,16 @@ const ArticleFetch = ({ defaultCategory = "general", searchTerm }) => {
   }, [category, defaultCategory, page, location.pathname, dispatch]); // Parameters/props for useEffect
 
   // Handling results of search
-  const filteredNews = (location.pathname === "/saved" ? savedArticles : articles).filter((article) =>
+  const filteredNews = (
+    location.pathname === "/saved" ? savedArticles : articles
+  ).filter((article) =>
     article.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // To specify no. of articles in a single page
-  const totalPages = Math.ceil((location.pathname === "/saved" ? filteredNews.length : totalResults) / 10);
+  const totalPages = Math.ceil(
+    (location.pathname === "/saved" ? filteredNews.length : totalResults) / 10
+  );
 
   return (
     <div className="fetchPage">
@@ -42,12 +46,22 @@ const ArticleFetch = ({ defaultCategory = "general", searchTerm }) => {
           <div className="list-container">
             <ul className="news-list">
               {filteredNews.map((article, index) => (
-                <NewsItem key={index} article={article} isSaved={location.pathname === "/saved"} />
+                <NewsItem
+                  key={index}
+                  article={article}
+                  isSaved={location.pathname === "/saved"}
+                />
               ))}
             </ul>
-            {location.pathname !== "/saved" && (
-              <Pagination page={page} setPage={setPage} totalPages={totalPages} />
-            )}
+            <div className="pagination-container">
+              {location.pathname !== "/saved" && (
+                <Pagination
+                  page={page}
+                  setPage={setPage}
+                  totalPages={totalPages}
+                />
+              )}
+            </div>
           </div>
         )}
       </div>
