@@ -6,48 +6,54 @@
     justify-content: space-between;
     gap: 20px;
     padding: 5px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-bottom: 1px solid #ccc;
 }
-.saveBut{
+.saveBut, .readBut{
     border: none;
     padding: 10px;
     cursor: pointer;
     border-radius: 10px;
-    background-color: #4363d1;
-    color: white;
+    color: #359eff;
     font-weight: bold;
+    background-color: transparent;
 }
-.article-text h3, p{
+.article-text p{
+    text-align: justify;
+    font-size: 1rem;
+}
+
+.article-text h3{
+    font-size: 1.2rem;
+    font-weight: bold;
     text-align: justify;
 }
 
-.readBut{
-    border: none;
-    padding: 5px;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+.article-buttons{
+    display: flex;
+    gap: 2vw;
 }
 
 .articleImg{
     width: 20vw;
     height: 20vh;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 
 .deleteBut {
-    background-color: red;
-    color: white;
+    background-color: transparent;
+    color: red;
     border: none;
-    padding: 8px 12px;
+    padding: 4px 12px;
     cursor: pointer;
-    margin-top: 10px;
     margin-right: 10px;
-    border-radius: 5px;
+    border-radius: 50px;
   }
   
   .deleteBut:hover {
-    background-color: darkred;
+    background-color: red;
+    color: white;
   }
 
 @media screen and (max-width: 500px) {
@@ -55,10 +61,18 @@
         margin-left: -12vw;
         width: 80vw;
         padding: 10px;
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
+
     .articleImg{
-        width: 60vw;
+        width: 70vw;
         height: 20vh;
+    }
+
+    .article-text h3{
+        font-size: 1rem;
+    }
+    .article-text p{
+        font-size: 0.8rem;
     }
 }

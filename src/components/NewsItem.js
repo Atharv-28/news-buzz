@@ -3,12 +3,14 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveArticle, deleteSavedArticle } from "../features/newsSlice";
 import "../styles/newsItem.css";
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const NewsItem = ({ article, isSaved }) => {
-  //initialte imports 
+  //initialte imports
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   //Calling saveArticle() to save respective article, function code in newsSlice.js
   const handleSave = () => {
@@ -20,31 +22,43 @@ const NewsItem = ({ article, isSaved }) => {
     dispatch(deleteSavedArticle(article));
   };
 
-
   //navigating user to articlePage.js for detailed info view
   const handleReadMore = () => {
-    navigate(`/article/${encodeURIComponent(article.title)}`, { state: { article } });
+    navigate(`/article/${encodeURIComponent(article.title)}`, {
+      state: { article },
+    });
   };
 
   return (
     <li className="news-item">
-      <div className="ImageContainer">
-        <img
-          className="articleImg"
-          src={article.image || 'https://cdn-icons-png.flaticon.com/128/14534/14534501.png'}
-          alt="Image Not Found"
-        />
-      </div>
       <div className="article-text">
         <h3>{article.title}</h3>
         <p>{article.description}</p>
-        <button className="readBut" onClick={handleReadMore}>Read More 🗞️</button>
+        <div className="article-buttons">
+          <button className="readBut" onClick={handleReadMore}>
+            <OpenInNewIcon fontSize="small" className="open-icon" />
+          </button>
+          {isSaved ? (
+            <button className="deleteBut" onClick={handleDelete}>
+              <DeleteIcon fontSize="small" className="delete-icon" />
+            </button>
+          ) : (
+            <button className="saveBut" onClick={handleSave}>
+              <BookmarkIcon fontSize="small" className="bookmark-icon" />
+            </button>
+          )}
+        </div>
       </div>
-      {isSaved ? (
-        <button className="deleteBut" onClick={handleDelete}>Delete</button>
-      ) : (
-        <button className="saveBut" onClick={handleSave}>Save</button>
-      )}
+      <div className="ImageContainer">
+        <img
+          className="articleImg"
+          src={
+            article.image ||
+            "https://cdn-icons-png.flaticon.com/128/14534/14534501.png"
+          }
+          alt="Image Not Found"
+        />
+      </div>
     </li>
   );
 };
