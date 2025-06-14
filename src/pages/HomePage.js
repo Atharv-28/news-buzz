@@ -1,10 +1,10 @@
 import React from 'react';
-import ArticleFetch from '../features/ArtcileFetch';
+import ArticleFetch from '../features/ArticleFetch';
 
-const HomePage = () => {
+const HomePage = ({searchTerm}) => {
   return (
     <div>
-      <ArticleFetch defaultCategory="general" />
+      <ArticleFetch defaultCategory="general" searchTerm={searchTerm} />
     </div>
   );
 };
