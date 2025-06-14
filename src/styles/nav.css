@@ -22,11 +22,11 @@
 
 .navbut{
     text-decoration: none;
-    box-shadow: #4363d1 0px 4px 8px -2px, #4363d1 0px 0px 0px 1px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     padding: 2px 10px 2px 10px;
     border-radius: 30px;
-    background-color: whitesmoke;
-    color: #4363d1;
+    background-color: white;
+    color: #359eff;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -34,12 +34,11 @@
 }
 
 .navbut:hover{
-    box-shadow: #4363d1 0px 5px 15px;
-}
+box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;}
 
 .navbut:active{
-    color: whitesmoke;
-    background-color: #4363d1;
+    color: white;
+    background-color: #359eff;
 }
 
 @media screen and (max-width: 500px) {

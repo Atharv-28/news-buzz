@@ -6,19 +6,29 @@
     justify-content: space-between;
     gap: 20px;
     padding: 5px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-bottom: 1px solid #ccc;
 }
 .saveBut{
     border: none;
     padding: 10px;
     cursor: pointer;
     border-radius: 10px;
-    background-color: #4363d1;
     color: white;
     font-weight: bold;
 }
-.article-text h3, p{
+.article-text p{
     text-align: justify;
+    font-size: 1rem;
+}
+
+.article-text h3{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.article-buttons{
+    display: flex;
+    gap: 2vw;
 }
 
 .readBut{
@@ -26,7 +36,6 @@
     padding: 5px;
     border-radius: 30px;
     cursor: pointer;
-    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 
 .articleImg{
