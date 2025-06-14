@@ -28,6 +28,9 @@
     background-color: whitesmoke;
     color: #4363d1;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbut:hover{
