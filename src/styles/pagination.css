@@ -9,12 +9,10 @@
 
 .pageBut{
     border: none;
+    background-color: transparent;
     cursor: pointer;
 }
 
-.prevImg{
-    height: 5vh;
-}
-.nextImg{
-    height: 6vh;
+.travIcon{
+    color: #359eff;
 }

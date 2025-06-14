@@ -1,15 +1,17 @@
 import React from "react";
 import "../styles/pagination.css";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 const Pagination = ({ page, setPage, totalPages }) => {
   return (
     <div className="pagination">
       <button className="pageBut" disabled={page === 1} onClick={() => setPage(page - 1)}>
-        <img className="prevImg" src="https://cdn-icons-png.flaticon.com/128/4421/4421669.png" alt="Previous" />
+        <NavigateBeforeIcon className="travIcon" fontSize="large" />
       </button>
       <span>{`${page} of ${totalPages}`}</span>
       <button className="pageBut" disabled={page === totalPages} onClick={() => setPage(page + 1)}>
-        <img className="nextImg" src="https://cdn-icons-png.flaticon.com/128/6276/6276701.png" alt="Next" />
+        <NavigateNextIcon className="travIcon" fontSize="large" />
       </button>
     </div>
   );
