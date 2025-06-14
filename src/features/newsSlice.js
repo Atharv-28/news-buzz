@@ -1,26 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { response as mockData } from '../util/fetchData'; // Import the mock data
 
-const apiKey = "077bb8175639502038599c91cb39f3ec"; //Storing Api Key, can be also done by inserting directly in .get() or .fetch()
-
-
-//creating Async Thunk for error Handling
+// Creating Async Thunk to fetch data from the mock file
 export const fetchNews = createAsyncThunk(
   'news/fetchNews',
-  async ({ category, page }, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const lowerCaseCategory = category.toLowerCase();
-      const url = `https://gnews.io/api/v4/top-headlines?category=${lowerCaseCategory}&lang=en&country=in&apikey=${apiKey}&page=${page}&max=10`;
-      const response = await axios.get(url);
-      return { articles: response.data.articles, totalResults: response.data.totalArticles };
+      // Simulate the structure returned by the API
+      return { articles: mockData, totalResults: mockData.length };
     } catch (error) {
-      return rejectWithValue(error.response ? error.response.data : 'Network Error');
+      return rejectWithValue('Failed to fetch news from mock data');
     }
   }
 );
 
-
-// creating slice to manage perticular states over whole react-app
+// Creating slice to manage particular states over the whole React app
 const newsSlice = createSlice({
   name: 'news',
   initialState: {
@@ -31,7 +25,7 @@ const newsSlice = createSlice({
     savedArticles: JSON.parse(localStorage.getItem('savedArticles')) || [],
   },
   reducers: {
-    // reducers are used to handle save article feature (saving,loading and deleting)
+    // Reducers are used to handle save article feature (saving, loading, and deleting)
     saveArticle: (state, action) => {
       const isAlreadySaved = state.savedArticles.some(article => article.title === action.payload.title);
       if (!isAlreadySaved) {
@@ -48,7 +42,7 @@ const newsSlice = createSlice({
       localStorage.setItem('savedArticles', JSON.stringify(state.savedArticles));
     }
   },
-  // addCases to handle state of fetching 
+  // Add cases to handle state of fetching
   extraReducers: (builder) => {
     builder
       .addCase(fetchNews.pending, (state) => {
