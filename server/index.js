@@ -1,42 +1,48 @@
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors');
-import dotenv from 'dotenv';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import NewsAPI from "newsapi"; 
+
+dotenv.config(); // Load environment variables
 
 const app = express();
 const PORT = 5000;
 
 // Middleware
-app.use(cors()); // Enable CORS for cross-origin requests
-app.use(express.json()); // Parse JSON request bodies
+app.use(cors()); 
+app.use(express.json()); 
 
 // NewsAPI configuration
-const API_KEY = process.env.NEWS_API_KEY; 
-const BASE_URL = 'https://newsapi.org/v2';
+const API_KEY = "cbccc7c17dcb4be9b57e6a4976ea8259";
+
+const newsapi = new NewsAPI(API_KEY);
 
 // Route to fetch news
-app.get('/api/news', async (req, res) => {
-  const { category = 'general', page = 1 } = req.query; // Get category and page from query params
+app.post("/api/news", async (req, res) => {
+  const { category = "general", page = 1 } = req.body; 
 
   try {
-    const response = await axios.get(`${BASE_URL}/top-headlines`, {
-      params: {
-        apiKey: API_KEY,
+    const response = await newsapi.v2.topHeadlines({
         category,
+        pageSize: 10, 
         page,
-        pageSize: 10, // Number of articles per page
-        country: 'us', // You can change this to your preferred country
-      },
-    });
-
-    // Send the articles and total results back to the client
+        country: 'in'
+    });    
+    console.log(response);
+    
     res.status(200).json({
-      articles: response.data.articles,
-      totalResults: response.data.totalResults,
+      articles: response.articles,
+      totalResults: response.totalResults,
     });
   } catch (error) {
-    console.error('Error fetching news from API:', error.message);
-    res.status(500).json({ error: 'Failed to fetch news from API' });
+    if (error.response) {
+      console.error("Error status:", error.response.status);
+      console.error("Error data:", error.response.data);
+      res.status(error.response.status).json({ error: error.response.data });
+    } else {
+      console.error("Error fetching news:", error.message);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
   }
 });
 
