@@ -3,9 +3,10 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveArticle, deleteSavedArticle } from "../features/newsSlice";
 import "../styles/newsItem.css";
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import DeleteIcon from '@mui/icons-material/Delete';
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 
 const NewsItem = ({ article, isSaved }) => {
   //initialte imports
@@ -50,14 +51,11 @@ const NewsItem = ({ article, isSaved }) => {
         </div>
       </div>
       <div className="ImageContainer">
-        <img
-          className="articleImg"
-          src={
-            article.urlToImage ||
-            "https://cdn-icons-png.flaticon.com/128/14534/14534501.png"
-          }
-          alt="Image Not Found"
-        />
+        {article.urlToImage ? (
+          <img className="articleImg" src={article.urlToImage} alt="Article" />
+        ) : (
+          <ImageNotSupportedIcon fontSize="large" style={{ color: "#359eff" }} />
+        )}
       </div>
     </li>
   );
