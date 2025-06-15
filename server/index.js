@@ -25,7 +25,6 @@ app.post("/api/news", async (req, res) => {
         category,
         pageSize: 10, 
         page,
-        country: 'in'
     });    
     console.log(response);
     
