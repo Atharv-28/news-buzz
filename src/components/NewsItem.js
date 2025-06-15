@@ -53,7 +53,7 @@ const NewsItem = ({ article, isSaved }) => {
         <img
           className="articleImg"
           src={
-            article.image ||
+            article.urlToImage ||
             "https://cdn-icons-png.flaticon.com/128/14534/14534501.png"
           }
           alt="Image Not Found"
