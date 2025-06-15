@@ -1,15 +1,28 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { response as mockData } from '../util/fetchData'; // Import the mock data
 
-// Creating Async Thunk to fetch data from the mock file
+// Creating Async Thunk to fetch data from the backend
 export const fetchNews = createAsyncThunk(
   'news/fetchNews',
-  async (_, { rejectWithValue }) => {
+  async ({ category = 'general', page = 1 }, { rejectWithValue }) => {
     try {
-      // Simulate the structure returned by the API
-      return { articles: mockData, totalResults: mockData.length };
+      const response = await fetch('http://localhost:5000/api/news', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ category, page }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch news');
+      }
+
+      const data = await response.json();
+      return { articles: data.articles, totalResults: data.totalResults };
     } catch (error) {
-      return rejectWithValue('Failed to fetch news from mock data');
+      console.error('Error fetching news:', error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -27,7 +40,9 @@ const newsSlice = createSlice({
   reducers: {
     // Reducers are used to handle save article feature (saving, loading, and deleting)
     saveArticle: (state, action) => {
-      const isAlreadySaved = state.savedArticles.some(article => article.title === action.payload.title);
+      const isAlreadySaved = state.savedArticles.some(
+        (article) => article.title === action.payload.title
+      );
       if (!isAlreadySaved) {
         state.savedArticles.push(action.payload);
         localStorage.setItem('savedArticles', JSON.stringify(state.savedArticles));
@@ -38,9 +53,11 @@ const newsSlice = createSlice({
       state.totalResults = state.savedArticles.length;
     },
     deleteSavedArticle: (state, action) => {
-      state.savedArticles = state.savedArticles.filter(article => article.title !== action.payload.title);
+      state.savedArticles = state.savedArticles.filter(
+        (article) => article.title !== action.payload.title
+      );
       localStorage.setItem('savedArticles', JSON.stringify(state.savedArticles));
-    }
+    },
   },
   // Add cases to handle state of fetching
   extraReducers: (builder) => {

@@ -1,9 +1,7 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import NewsAPI from "newsapi"; 
 
-dotenv.config(); // Load environment variables
 
 const app = express();
 const PORT = 5000;
@@ -20,6 +18,7 @@ const newsapi = new NewsAPI(API_KEY);
 // Route to fetch news
 app.post("/api/news", async (req, res) => {
   const { category = "general", page = 1 } = req.body; 
+    console.log(req.body);
 
   try {
     const response = await newsapi.v2.topHeadlines({
