@@ -5,7 +5,7 @@ export const fetchNews = createAsyncThunk(
   'news/fetchNews',
   async ({ category = 'general', page = 1 }, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:5000/api/news', {
+      const response = await fetch('https://news-buzz-sjle.onrender.com/api/news', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
