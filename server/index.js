@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
 import NewsAPI from "newsapi"; 
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const app = express();
 const PORT = 5000;
@@ -11,15 +13,13 @@ app.use(cors());
 app.use(express.json()); 
 
 // NewsAPI configuration
-const API_KEY = "cbccc7c17dcb4be9b57e6a4976ea8259";
+const API_KEY = process.env.NEWS_API_KEY;
 
 const newsapi = new NewsAPI(API_KEY);
 
 // Route to fetch news
 app.post("/api/news", async (req, res) => {
   const { category = "general", page = 1 } = req.body; 
-    console.log(req.body);
-
   try {
     const response = await newsapi.v2.topHeadlines({
         category,
@@ -46,5 +46,5 @@ app.post("/api/news", async (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running`);
 });

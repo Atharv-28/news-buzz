@@ -2,10 +2,10 @@
     width: 80%;
     list-style: none;
     display: flex;
+    /* justify-content: space-around; */
     align-items: center;
-    justify-content: space-between;
     gap: 20px;
-    padding: 5px;
+    padding: 20px;
     border-bottom: 1px solid #ccc;
 }
 .saveBut, .readBut{
@@ -17,6 +17,13 @@
     font-weight: bold;
     background-color: transparent;
 }
+
+.article-text{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .article-text p{
     text-align: justify;
     font-size: 1rem;
